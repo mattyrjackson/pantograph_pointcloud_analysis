@@ -67,3 +67,4 @@ def load_data(file_num_max, dir):
 
 # Calling functions for loading of data
 file_num_max = num_csvs(dir)   # Determine number CSV files to read
+all_x, all_y, all_z = load_data(file_num_max, dir)

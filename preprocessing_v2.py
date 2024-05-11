@@ -79,7 +79,7 @@ while(profile_count<num_profiles-1):
 # Downsampling profiles where over-dense ------------------------
 
 
-# Removing outliers made into NaNm Might reduce point cloud size ----------------------------
+# Removing outliers and downsampled data, which was made into NaN. This might reduce point cloud size. ----------------------------
 # Based on condition, find indices true when condition applied
 # Indices (for x, y, and z) remove elements synchronously
 x = array(x)

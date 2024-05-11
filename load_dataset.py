@@ -1,4 +1,5 @@
 # MJ 2024/05/10 Load dataset
+# Profiles are columns, rows are rows in the array of arrays
 
 # Libraries
 import time

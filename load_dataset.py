@@ -22,7 +22,7 @@ def num_csvs(dir):
     print(file_num_max)
     return file_num_max
        
-# Import data --------------------------------------
+# Import data ---------------------------------------------------
 print("Importing x,z,y data from all the CSV files")
 print("\n")
 # Determine when profile captured, for ordering
@@ -61,9 +61,10 @@ def load_data(file_num_max, dir):
 
             file_num += 1
         else:
-            print('File' + my_CSV_file + 'does not exist')
+            print('File' + my_CSV_file + 'does not exist. Please check your dataset.')
+            break
     return all_x, all_y, all_z
-
+# Import data --------------------------------------------------
 
 # Calling functions for loading of data
 file_num_max = num_csvs(dir)   # Determine number CSV files to read

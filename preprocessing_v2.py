@@ -134,33 +134,4 @@ print(size(z_reduced[0]))
 print("Outlying data removed")
 # END Printing matrice arrays -------------------------------------------------------------------------
 
-# Create functions for pre-processing steps to improve reability for users glancing over code/light refamiliarisaiton
-
 print("End of preprocessing")
-
-
-# Temporary plotting to check post-preprocessing visualisations -----------------------------------
-if 1:
-    import matplotlib.pyplot as plt
-    #Replotting
-    plt.style.use('ggplot')
-    plt.ion()   #Turns interactive mode on
-    #Create 3D scatter figure
-    #plt.figure()    #Initialise figure
-    #fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
-    fig1 = plt.figure()
-    ax1 = fig1.add_subplot(projection='3d')
-    print("Created figure\n")
-
-
-    #Adding labels, title, etc.
-    ax1.set_xlabel('x (mm)', fontsize=10, rotation=0)
-    ax1.set_ylabel('y (mm)', fontsize=10, rotation=0) 
-    ax1.set_zlabel('z (mm)', fontsize=10, rotation=0)
-    ax1.set_title('3D scan of a pantograph carbon strip')
-
-    ax1.set_xlim(0, -80)
-    ax1.set_ylim(0, 750)
-    ax1.set_zlim(125, 300)
-    plot1 = ax1.scatter(x[:][:], y[:][:], z[:][:], s=0.025, depthshade=True)
-# Temporary plotting to check post-preprocessing visualisations -----------------------------------

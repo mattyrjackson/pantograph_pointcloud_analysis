@@ -6,7 +6,7 @@ from load_dataset import all_x, all_y, all_z
 import numpy as np
 from pylab import *
 
-# Initialising vars ---------------------------------------------
+# START Initialising vars ---------------------------------------------
 # Import data from load_dataset
 x = np.array(all_x)
 y = np.array(all_y)
@@ -38,9 +38,9 @@ y_reduced = []
 z_reduced = []
 # List of rows to remove
 rows_remove = []
-# Initialising vars ---------------------------------------------
+# END Initialising vars ---------------------------------------------
 
-# Make outlying data NaN ----------------------------------------
+# START Make outlying data NaN ----------------------------------------
 # Replacing all values less than <a specified value dependent on which strip analysed> in z as NaN, as well as their x and y counterparts
 # Not doing if statement, so quicker with "z[profile][z[profile] < 218] = NaN"
 # NaN's only seen for z 
@@ -55,10 +55,10 @@ for profile in range(num_profiles):
     for indices_z_nans in range(len(z_nans[profile])):
         x[profile, indices_z_nans] = NaN    # Replace x value with NaN due to corresponding z value also being NaN
         y[profile, indices_z_nans] = NaN
-# Make outlying data NaN ----------------------------------------
+# END Make outlying data NaN ----------------------------------------
 
 
-# Downsampling profiles where over-dense ------------------------
+# START Downsampling profiles where over-dense ------------------------
 # Average the y values, so each singular profile in one distinct line
 for profile in range(num_profiles):
     y_avg.append(np.nansum(y[profile])/len(y[profile]))  # Should obtain 1x326 array
@@ -76,10 +76,11 @@ while(profile_count<num_profiles-1):
             profile_distance[profile_count] = profile_distance[profile_count] + profile_distance[profile_count-1]
             print("Distances updated")
     profile_count += 1
-# Downsampling profiles where over-dense ------------------------
+# END Downsampling profiles where over-dense ------------------------
 
 
-# Removing outliers and downsampled data, which was made into NaN. This might reduce point cloud size. ----------------------------
+# START Removing outliers and downsampled data, which was made into NaN. 
+# This might reduce point cloud size. ----------------------------
 # Based on condition, find indices true when condition applied
 # Indices (for x, y, and z) remove elements synchronously
 x = array(x)
@@ -111,6 +112,7 @@ for point in range(num_rows):
     if(percent_nans[point] > 75.0): rows_remove.append(point)       # Interesting experiment would be to investigate threshold of NaN's which dicates whether row is removed
 
 # Removes row if large number NaNs present (i.e. data not useful)
+# Threshold can be varied depending on preference
 for profile in range(num_profiles):
     np.array(x_reduced.append(np.array(np.delete(x[profile],rows_remove))))
     np.array(y_reduced.append(np.array(np.delete(y[profile],rows_remove))))
@@ -118,7 +120,9 @@ for profile in range(num_profiles):
 
 reduced_num_profiles = len(x_reduced)
 reduced_num_rows = size(x_reduced[0])
+# END Removing Now all outliers made into NaN, can reduce point cloud size ----------------------------
 
+# START Printing matrice arrays post data removal -----------------------------------------------------
 print(len(x_reduced))
 print(size(x_reduced[0]))
 
@@ -128,7 +132,7 @@ print(size(y_reduced[0]))
 print(len(z_reduced))
 print(size(z_reduced[0]))
 print("Outlying data removed")
-# Removing Now all outliers made into NaN, can reduce point cloud size ----------------------------
+# END Printing matrice arrays -------------------------------------------------------------------------
 
 # Create functions for pre-processing steps to improve reability for users glancing over code/light refamiliarisaiton
 
